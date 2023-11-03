@@ -5,7 +5,7 @@ public class Tablero {
         inicializarTablero();
     }
     public void imprTablero (){
-        for (int y = 0 ; y < this.tab.length ; y++){
+        for (int y = this.tab.length-1 ; y >= 0 ; y--){
             for (int x = 0 ; x < this.tab[y].length ; x++){
                 System.out.print(this.tab[y][x].getPieza());
             }
@@ -85,9 +85,14 @@ public class Tablero {
 
     public boolean checDiagonalInversa(){
         boolean result = false;
-        if (this.tab[2][0].getPieza().equals(this.tab[1][1].getPieza()) && this.tab[2][0].getPieza().equals(this.tab[0][2].getPieza()) && this.tab[2][0].ocupada && this.tab[1][1].ocupada && this.tab[0][2].ocupada ){
-            result = true;
+        for (int y = this.tab.length-1 ; y > 0 ; y--){
+            for (int x = 0 ; x < this.tab.length-1 ; x++){
+                if (this.tab[2][0].getPieza().equals(this.tab[y-1][x+1].getPieza()) && this.tab[y][x].getPieza().equals(this.tab[y-1][x+1].getPieza()) && this.tab[2][0].ocupada && this.tab[y-1][x+1].ocupada){
+                    result = true;
+                }
+            }
         }
+
         return result;
     }
 
